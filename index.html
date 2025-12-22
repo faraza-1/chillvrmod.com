@@ -684,7 +684,7 @@
     <!-- VRChat-themed Download Modal -->
     <div id="downloadModal" class="download-modal-overlay">
         <div class="download-modal">
-            <button class="close-modal-btn" onclick="closeDownloadModal()">
+            <button class="close-modal-btn" onclick="closeDownloadModal(event)">
                 <i class="fas fa-times"></i>
             </button>
 
@@ -705,10 +705,6 @@
                         <div class="download-progress-fill" id="progressFill"></div>
                     </div>
                 </div>
-
-                <p style="color: #64748b; font-size: 14px; margin-top: 20px;">
-                    <i class="fas fa-shield-alt"></i> Secure download from Dropbox
-                </p>
             </div>
 
             <div id="successState" style="display: none;">
@@ -721,7 +717,7 @@
                 <p style="color: #94a3b8; font-size: 16px; margin: 20px 0;">
                     Your mod is ready to use
                 </p>
-                <button onclick="closeDownloadModal()" class="btn btn-primary" style="margin-top: 20px;">
+                <button onclick="closeDownloadModal(event)" class="btn btn-primary" style="margin-top: 20px;">
                     <i class="fas fa-check"></i> Close
                 </button>
             </div>
@@ -989,7 +985,10 @@
             }, 200);
         }
 
-        function closeDownloadModal() {
+        function closeDownloadModal(event) {
+            if (event) {
+                event.stopPropagation();
+            }
             const modal = document.getElementById('downloadModal');
             modal.classList.remove('active');
         }
