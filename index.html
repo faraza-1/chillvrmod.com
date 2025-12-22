@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="tr">
-<title>ChilloutVR Mod - Premium VR Modifications & Community</title>
-<meta name="title" content="ChilloutVR Mod - Premium VR Modifications & Community" />
-<meta name="description" content="Transform your VR experience with premium mods. Join 120K+ users worldwide." />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChilloutVR Mod - Premium VR Modifications & Community</title>
+    <meta name="title" content="ChilloutVR Mod - Premium VR Modifications & Community" />
+    <meta name="description" content="Transform your VR experience with premium mods. Join 120K+ users worldwide." />
 
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://chillvrmod.com/" />
-<meta property="og:title" content="ChilloutVR Mod - Premium VR Modifications & Community" />
-<meta property="og:description" content="Transform your VR experience with premium mods. Join 120K+ users worldwide." />
-<meta property="og:image" content="https://chillvrmod.com/images/kapak.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://chillvrmod.com/" />
+    <meta property="og:title" content="ChilloutVR Mod - Premium VR Modifications & Community" />
+    <meta property="og:description" content="Transform your VR experience with premium mods. Join 120K+ users worldwide." />
+    <meta property="og:image" content="https://chillvrmod.com/images/kapak.png" />
 
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://chillvrmod.com/" />
-<meta property="twitter:title" content="ChilloutVR Mod - Premium VR Modifications & Community" />
-<meta property="twitter:description" content="Transform your VR experience with premium mods. Join 120K+ users worldwide." />
-<meta property="twitter:image" content="https://chillvrmod.com/images/kapak.png" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://chillvrmod.com/" />
+    <meta property="twitter:title" content="ChilloutVR Mod - Premium VR Modifications & Community" />
+    <meta property="twitter:description" content="Transform your VR experience with premium mods. Join 120K+ users worldwide." />
+    <meta property="twitter:image" content="https://chillvrmod.com/images/kapak.png" />
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -386,6 +389,284 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* VRChat-themed Download Modal */
+        .download-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .download-modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .download-modal {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.95));
+            border: 2px solid rgba(6, 182, 212, 0.4);
+            border-radius: 24px;
+            padding: 50px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.8) translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-modal-overlay.active .download-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Animated background particles */
+        .download-modal::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            animation: rotate-gradient 10s linear infinite;
+        }
+
+        @keyframes rotate-gradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .vr-headset-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: float-vr 3s ease-in-out infinite, glow-vr 2s ease-in-out infinite;
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4);
+        }
+
+        @keyframes float-vr {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes glow-vr {
+            0%, 100% { 
+                box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4),
+                           0 0 60px rgba(6, 182, 212, 0.2);
+            }
+            50% { 
+                box-shadow: 0 10px 60px rgba(6, 182, 212, 0.8),
+                           0 0 100px rgba(59, 130, 246, 0.4);
+            }
+        }
+
+        .vr-headset-icon i {
+            font-size: 60px;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .download-progress-container {
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .download-progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(6, 182, 212, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .download-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6);
+            width: 0%;
+            transition: width 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .download-percentage {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 20px 0 10px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .download-status {
+            color: #94a3b8;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .download-filename {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #06b6d4;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particle-float 3s ease-in-out infinite;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-500px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: none;
+            stroke-width: 4;
+            stroke: #06b6d4;
+            stroke-miterlimit: 10;
+            box-shadow: inset 0 0 0 #06b6d4;
+            animation: fill-success 0.4s ease-in-out 0.4s forwards, scale-success 0.3s ease-in-out 0.9s both;
+        }
+
+        .success-checkmark.show {
+            display: block;
+        }
+
+        @keyframes fill-success {
+            100% {
+                box-shadow: inset 0 0 0 60px #06b6d4;
+            }
+        }
+
+        @keyframes scale-success {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+
+        .success-checkmark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 4;
+            stroke-miterlimit: 10;
+            stroke: #06b6d4;
+            fill: none;
+            animation: stroke-circle 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        @keyframes stroke-circle {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .success-checkmark-check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke-check 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke-check {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .close-modal-btn:hover {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: #06b6d4;
+            transform: rotate(90deg);
+        }
     </style>
 </head>
 <body>
@@ -398,6 +679,53 @@
     <div id="downloadNotification" class="download-notification">
         <i class="fas fa-download"></i>
         <span id="notificationText">İndirme başlatılıyor...</span>
+    </div>
+
+    <!-- VRChat-themed Download Modal -->
+    <div id="downloadModal" class="download-modal-overlay">
+        <div class="download-modal">
+            <button class="close-modal-btn" onclick="closeDownloadModal()">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="particles" id="particleContainer"></div>
+
+            <div id="downloadingState">
+                <div class="vr-headset-icon">
+                    <i class="fas fa-vr-cardboard"></i>
+                </div>
+
+                <div class="download-filename" id="modalFilename">Avatar Switcher Pro</div>
+                <div class="download-status" id="downloadStatus">Preparing download...</div>
+
+                <div class="download-percentage" id="downloadPercentage">0%</div>
+
+                <div class="download-progress-container">
+                    <div class="download-progress-bar">
+                        <div class="download-progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <p style="color: #64748b; font-size: 14px; margin-top: 20px;">
+                    <i class="fas fa-shield-alt"></i> Secure download from Dropbox
+                </p>
+            </div>
+
+            <div id="successState" style="display: none;">
+                <svg class="success-checkmark show" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="success-checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="success-checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+
+                <div class="download-filename">Download Complete!</div>
+                <p style="color: #94a3b8; font-size: 16px; margin: 20px 0;">
+                    Your mod is ready to use
+                </p>
+                <button onclick="closeDownloadModal()" class="btn btn-primary" style="margin-top: 20px;">
+                    <i class="fas fa-check"></i> Close
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Navigation -->
@@ -578,7 +906,95 @@
             }
         });
 
-        // Download notification function
+        // Create particles for download modal
+        function createParticles() {
+            const particleContainer = document.getElementById('particleContainer');
+            particleContainer.innerHTML = '';
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // VRChat-themed Download Modal
+        function showDownloadModal(modName, downloadUrl) {
+            const modal = document.getElementById('downloadModal');
+            const filename = document.getElementById('modalFilename');
+            const status = document.getElementById('downloadStatus');
+            const percentage = document.getElementById('downloadPercentage');
+            const progressFill = document.getElementById('progressFill');
+            const downloadingState = document.getElementById('downloadingState');
+            const successState = document.getElementById('successState');
+
+            // Reset states
+            downloadingState.style.display = 'block';
+            successState.style.display = 'none';
+            percentage.textContent = '0%';
+            progressFill.style.width = '0%';
+            
+            filename.textContent = modName;
+            status.textContent = 'Initializing download...';
+            
+            modal.classList.add('active');
+            createParticles();
+
+            // Simulate download progress
+            let progress = 0;
+            const statuses = [
+                'Connecting to server...',
+                'Downloading files...',
+                'Verifying integrity...',
+                'Almost done...',
+                'Finalizing...'
+            ];
+            
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                
+                percentage.textContent = Math.floor(progress) + '%';
+                progressFill.style.width = progress + '%';
+                
+                const statusIndex = Math.floor(progress / 20);
+                if (statusIndex < statuses.length) {
+                    status.textContent = statuses[statusIndex];
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    
+                    // Start actual download immediately
+                    if (downloadUrl && downloadUrl !== '#') {
+                        // Create invisible download link
+                        const downloadLink = document.createElement('a');
+                        downloadLink.href = downloadUrl;
+                        downloadLink.download = '';
+                        downloadLink.style.display = 'none';
+                        document.body.appendChild(downloadLink);
+                        downloadLink.click();
+                        document.body.removeChild(downloadLink);
+                    }
+                    
+                    // Show success state
+                    setTimeout(() => {
+                        downloadingState.style.display = 'none';
+                        successState.style.display = 'block';
+                    }, 500);
+                }
+            }, 200);
+        }
+
+        function closeDownloadModal() {
+            const modal = document.getElementById('downloadModal');
+            modal.classList.remove('active');
+        }
+
+        // Download notification function (kept for compatibility)
         function showDownloadNotification(modName) {
             const notification = document.getElementById('downloadNotification');
             const notificationText = document.getElementById('notificationText');
@@ -591,19 +1007,30 @@
             }, 3000);
         }
 
-        // Dropbox download function
+        // Updated download handler
         function handleDownload(url, modName) {
             if (url && url !== '#') {
-                // Dropbox linki varsa direkt indir
-                showDownloadNotification(modName);
-                window.open(url, '_blank');
+                showDownloadModal(modName, url);
             } else {
-                // Link yoksa uyarı göster
                 alert('Bu mod için indirme linki henüz eklenmedi. Lütfen daha sonra tekrar deneyin.');
             }
         }
 
-        // ChilloutVR mods data - BURAYA DROPBOX LİNKLERİNİ EKLEYİN
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeDownloadModal();
+            }
+        });
+
+        // Close modal on overlay click
+        document.getElementById('downloadModal').addEventListener('click', (e) => {
+            if (e.target.id === 'downloadModal') {
+                closeDownloadModal();
+            }
+        });
+
+        // ChilloutVR mods data
         const mods = [
             { 
                 name: 'Avatar Switcher Pro', 
@@ -677,7 +1104,6 @@
             const card = document.createElement('div');
             card.className = 'card';
             
-            // Determine tag class based on tag value
             const tagClass = mod.tags[0].toLowerCase();
             
             card.innerHTML = `
@@ -686,40 +1112,20 @@
                     <h3 class="card-title">${mod.name}</h3>
                     <p class="card-description">${mod.description}</p>
                     
-                    <!-- Tags -->
-                    <div class="card-tags">
-                        <span class="card-tag ${tagClass}">${mod.tags[0]}</span>
-                    </div>
-                    
-                    <!-- Meta Info -->
-                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px; padding-top: 12px; border-top: 1px solid rgba(99, 102, 241, 0.2);">
+                    <div style="display: flex; align-items: center; gap: 8px; margin: 16px 0; padding-top: 12px; border-top: 1px solid rgba(99, 102, 241, 0.2);">
                         <i class="fas fa-download" style="color: #06b6d4; font-size: 14px;"></i>
                         <span style="color: #94a3b8; font-size: 13px;">${mod.downloads}</span>
                     </div>
                     
-                    <!-- Buttons -->
-                    <div class="card-buttons">
-                        <button onclick="handleDownload('${mod.downloadUrl}', '${mod.name}')" class="btn btn-primary" style="flex: 2;">
-                            <i class="fas fa-download"></i> Download
-                        </button>
-                        <button onclick="showModDetails('${mod.name}')" class="btn-details">
-                            <i class="fas fa-info-circle"></i> Details
-                        </button>
-                    </div>
+                    <button onclick="handleDownload('${mod.downloadUrl}', '${mod.name}')" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-download"></i> Download Now
+                    </button>
                 </div>
             `;
             modsGrid.appendChild(card);
         });
 
-        // Show mod details function
-        function showModDetails(modName) {
-            const mod = mods.find(m => m.name === modName);
-            if (mod) {
-                alert(`📦 ${mod.name}\n\n📝 ${mod.description}\n\n🏷️ Type: ${mod.tags[0]}\n⬇️ Downloads: ${mod.downloads}`);
-            }
-        }
-
-        // Update mod count in hero section
+        // Update mod count
         document.getElementById('modCount').textContent = mods.length;
         document.getElementById('heroModCount').textContent = mods.length;
 
@@ -794,8 +1200,4 @@
         });
     </script>
 </body>
-
 </html>
-
-
-
