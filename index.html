@@ -11,38 +11,17 @@
     <meta property="og:url" content="https://chillvrmod.com/" />
     <meta property="og:title" content="ChilloutVR Mod - Premium VR Modifications & Community" />
     <meta property="og:description" content="Transform your VR experience with premium mods. Join 120K+ users worldwide." />
-    <meta property="og:image" content="https://chillvrmod.com/images/kapak.png" />
-
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://chillvrmod.com/" />
-    <meta property="twitter:title" content="ChilloutVR Mod - Premium VR Modifications & Community" />
-    <meta property="twitter:description" content="Transform your VR experience with premium mods. Join 120K+ users worldwide." />
-    <meta property="twitter:image" content="https://chillvrmod.com/images/kapak.png" />
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts - Premium Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#6366f1',
-                        secondary: '#8b5cf6',
-                        accent: '#06b6d4'
-                    }
-                }
-            }
-        }
-    </script>
     
     <style>
         * {
@@ -51,34 +30,72 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #00d9ff;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --dark: #0a0a12;
+            --darker: #050507;
+            --card-bg: rgba(10, 15, 35, 0.6);
+            --glass: rgba(20, 25, 50, 0.4);
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: #0a0a12;
+            font-family: 'Figtree', sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a2e 50%, #0f1c3f 100%);
             color: #ffffff;
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Premium Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(6, 182, 212, 0.03) 0%, transparent 40%);
+            pointer-events: none;
+            animation: drift 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(30px, -30px); }
+            50% { transform: translate(0, 30px); }
+            75% { transform: translate(-30px, -20px); }
         }
 
         html {
             scroll-behavior: smooth;
         }
 
+        /* Premium Navbar */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(10, 10, 18, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+            background: rgba(10, 10, 18, 0.7);
+            backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
             padding: 20px 0;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .navbar.scrolled {
             padding: 12px 0;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            background: rgba(10, 10, 18, 0.85);
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.1);
+            border-bottom-color: rgba(0, 217, 255, 0.2);
         }
 
         .nav-container {
@@ -91,16 +108,27 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
             font-weight: 800;
             text-decoration: none;
             color: white;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 2;
         }
 
         .logo span {
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            display: inline-block;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
         }
 
         .nav-links {
@@ -111,50 +139,114 @@
         }
 
         .nav-links a {
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-weight: 500;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
             color: #cbd5e1;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 15px;
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(124, 58, 237, 0.1));
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
         }
 
         .nav-links a:hover {
-            background: rgba(6, 182, 212, 0.1);
-            color: #06b6d4;
+            color: var(--primary);
             transform: translateY(-2px);
         }
 
-        .nav-links a.active {
-            background: rgba(6, 182, 212, 0.15);
-            color: #06b6d4;
-            border: 1px solid rgba(6, 182, 212, 0.3);
+        .nav-links a:hover::before {
+            opacity: 1;
         }
 
+        .nav-links a.active {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(124, 58, 237, 0.1));
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            color: var(--primary);
+            box-shadow: 0 8px 20px rgba(0, 217, 255, 0.2);
+        }
+
+        /* Premium Button */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            border: none;
+            font-family: 'Syne', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 60px rgba(0, 217, 255, 0.5);
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        /* Premium Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
             padding: 120px 0 60px;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
+        .hero::after {
             content: '';
             position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 20% 20%, rgba(6,182,212,0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(59,130,246,0.12) 0%, transparent 50%);
-            animation: mesh-move 20s ease-in-out infinite;
+            top: -50%;
+            right: -50%;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.15) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
         }
 
-        @keyframes mesh-move {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-100px, -100px) rotate(180deg); }
         }
 
         .container {
@@ -166,128 +258,419 @@
         }
 
         .hero h1 {
-            font-size: 58px;
+            font-family: 'Syne', sans-serif;
+            font-size: 78px;
             font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -2px;
+            line-height: 1.05;
+            margin-bottom: 30px;
+            letter-spacing: -3px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--primary) 50%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .btn {
+        .hero-subtitle {
+            font-size: 20px;
+            color: #a0aec0;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+            opacity: 0;
+            max-width: 700px;
+        }
+
+        .hero-subtitle strong {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+            animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+            opacity: 0;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(0, 217, 255, 0.3);
+            color: var(--primary);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 217, 255, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.25);
+        }
+
+        /* Stats Cards */
+        .stats-container {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+            opacity: 0;
+        }
+
+        .stat-pill {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-weight: 700;
-            text-decoration: none;
+            gap: 12px;
+            padding: 14px 24px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(124, 58, 237, 0.05));
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
-            color: white;
-            box-shadow: 0 10px 30px rgba(6,182,212,0.4);
+        .stat-pill:hover {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(124, 58, 237, 0.1));
+            border-color: rgba(0, 217, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.15);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(6,182,212,0.6);
+        .stat-icon {
+            color: var(--primary);
+            font-size: 18px;
         }
 
-        .section {
-            padding: 80px 0;
+        .stat-text {
+            color: #cbd5e1;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .stat-number {
+            color: var(--primary);
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 17px;
+        }
+
+        /* Hero Card */
+        .hero-card {
             position: relative;
+            animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero-card-inner {
+            background: linear-gradient(135deg, rgba(20, 30, 70, 0.4), rgba(15, 23, 42, 0.6));
+            border: 1px solid rgba(0, 217, 255, 0.15);
+            border-radius: 28px;
+            padding: 50px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card-inner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(0, 217, 255, 0.1), transparent 60%);
+            pointer-events: none;
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(124, 58, 237, 0.1));
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.6;
+                transform: scale(1.3);
+            }
+        }
+
+        .live-text {
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .cvr-logo {
+            text-align: center;
+            margin-bottom: 40px;
+            font-family: 'Syne', sans-serif;
+            font-size: 70px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 10px 30px rgba(0, 217, 255, 0.3));
+            letter-spacing: -2px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .hero-stat-label {
+            color: #a0aec0;
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 120px 0;
+            position: relative;
+            border-top: 1px solid rgba(0, 217, 255, 0.05);
         }
 
         .section-title {
-            font-size: 42px;
+            font-family: 'Syne', sans-serif;
+            font-size: 56px;
             font-weight: 900;
             text-align: center;
-            margin-bottom: 50px;
-            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #ffffff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
+        .section-subtitle {
+            text-align: center;
+            color: #a0aec0;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            line-height: 1.8;
+        }
+
+        /* Cards Grid */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+            margin-top: 60px;
         }
 
         .card {
-            background: rgba(30, 41, 59, 0.4);
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            background: linear-gradient(135deg, rgba(10, 20, 50, 0.4), rgba(15, 25, 60, 0.3));
+            border: 1px solid rgba(0, 217, 255, 0.08);
             border-radius: 20px;
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            group: card;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(0, 217, 255, 0.1), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: #06b6d4;
+            transform: translateY(-12px);
+            box-shadow: 0 30px 80px rgba(0, 217, 255, 0.2);
+            border-color: rgba(0, 217, 255, 0.3);
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card-image {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.05);
         }
 
         .card-content {
-            padding: 24px;
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .card-title {
-            font-size: 20px;
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
         }
 
         .card-description {
-            color: #94a3b8;
+            color: #a0aec0;
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.7;
+            margin-bottom: 28px;
+            flex-grow: 1;
         }
 
+        .card-footer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            margin-bottom: 24px;
+            color: #a0aec0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .card-footer i {
+            color: var(--primary);
+        }
+
+        .card .btn {
+            width: 100%;
+            justify-content: center;
+            font-size: 16px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #00d9ff 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            font-weight: 700;
+            font-family: 'Syne', sans-serif;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.4);
+        }
+
+        /* Footer */
         .footer {
-            background: rgba(10, 10, 18, 0.95);
-            border-top: 1px solid rgba(6, 182, 212, 0.2);
-            padding: 60px 0 30px;
+            background: linear-gradient(135deg, rgba(5, 5, 7, 0.9), rgba(10, 15, 35, 0.9));
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
+            padding: 80px 0 40px;
             text-align: center;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero > .container > div {
-                grid-template-columns: 1fr !important;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
+        .footer-content {
+            margin-bottom: 40px;
+            color: #a0aec0;
+            font-size: 16px;
         }
 
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(124, 58, 237, 0.05));
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 14px;
+            color: var(--primary);
+            font-size: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+            border-color: transparent;
+        }
+
+        /* Preloader */
         #preloader {
             position: fixed;
             inset: 0;
-            background: #0a0a12;
+            background: linear-gradient(135deg, var(--dark), #1a1a2e);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -296,376 +679,45 @@
         }
 
         .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(6, 182, 212, 0.2);
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
+
+        .loader::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 4px solid rgba(0, 217, 255, 0.2);
             border-radius: 50%;
-            border-top-color: #06b6d4;
-            animation: spin 1s linear infinite;
+            border-top-color: var(--primary);
+            animation: spin 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        /* Pulse dot animation for LIVE badge */
-        @keyframes pulse-dot {
-            0%, 100% { 
-                opacity: 1;
-                transform: scale(1);
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
             }
-            50% { 
-                opacity: 0.5;
-                transform: scale(1.2);
+
+            .hero-subtitle {
+                font-size: 18px;
             }
-        }
 
-        /* Capsule icon animation */
-        @keyframes float-capsule {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            25% { transform: translateY(-5px) rotate(-5deg); }
-            50% { transform: translateY(-8px) rotate(0deg); }
-            75% { transform: translateY(-5px) rotate(5deg); }
-        }
-
-        @keyframes glow-pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.5); }
-            50% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.8), 0 0 40px rgba(139, 92, 246, 0.4); }
-        }
-
-        .capsule-icon {
-            animation: float-capsule 3s ease-in-out infinite, glow-pulse 2s ease-in-out infinite;
-        }
-
-        /* Stats counter animation */
-        @keyframes count-up {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .stat-number {
-            animation: count-up 0.8s ease-out forwards;
-        }
-
-        /* Inline stats animation */
-        @keyframes pulse-glow {
-            0%, 100% { 
-                text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+            .section-title {
+                font-size: 36px;
             }
-            50% { 
-                text-shadow: 0 0 20px rgba(6, 182, 212, 0.8), 0 0 30px rgba(59, 130, 246, 0.4);
+
+            .nav-links {
+                display: none;
             }
-        }
 
-        .animated-stat {
-            display: inline-block;
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-
-        /* Download notification */
-        .download-notification {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
-            color: white;
-            padding: 16px 24px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(6,182,212,0.4);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 1001;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-        }
-
-        .download-notification.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* VRChat-themed Download Modal */
-        .download-modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-
-        .download-modal-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .download-modal {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.95));
-            border: 2px solid rgba(6, 182, 212, 0.4);
-            border-radius: 24px;
-            padding: 50px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            transform: scale(0.8) translateY(30px);
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .download-modal-overlay.active .download-modal {
-            transform: scale(1) translateY(0);
-        }
-
-        /* Animated background particles */
-        .download-modal::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
-            animation: rotate-gradient 10s linear infinite;
-        }
-
-        @keyframes rotate-gradient {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .vr-headset-icon {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 30px;
-            background: linear-gradient(135deg, #06b6d4, #3b82f6, #8b5cf6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            animation: float-vr 3s ease-in-out infinite, glow-vr 2s ease-in-out infinite;
-            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4);
-        }
-
-        @keyframes float-vr {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes glow-vr {
-            0%, 100% { 
-                box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4),
-                           0 0 60px rgba(6, 182, 212, 0.2);
+            .card-grid {
+                grid-template-columns: 1fr;
             }
-            50% { 
-                box-shadow: 0 10px 60px rgba(6, 182, 212, 0.8),
-                           0 0 100px rgba(59, 130, 246, 0.4);
-            }
-        }
-
-        .vr-headset-icon i {
-            font-size: 60px;
-            color: white;
-            position: relative;
-            z-index: 2;
-        }
-
-        .download-progress-container {
-            margin: 30px 0;
-            position: relative;
-        }
-
-        .download-progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(6, 182, 212, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .download-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6);
-            width: 0%;
-            transition: width 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .download-progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 1.5s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .download-percentage {
-            font-size: 48px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 20px 0 10px;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .download-status {
-            color: #94a3b8;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .download-filename {
-            font-size: 20px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 10px;
-        }
-
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #06b6d4;
-            border-radius: 50%;
-            opacity: 0;
-            animation: particle-float 3s ease-in-out infinite;
-        }
-
-        @keyframes particle-float {
-            0% {
-                transform: translateY(0) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-500px) scale(1);
-                opacity: 0;
-            }
-        }
-
-        .success-checkmark {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            display: none;
-            stroke-width: 4;
-            stroke: #06b6d4;
-            stroke-miterlimit: 10;
-            box-shadow: inset 0 0 0 #06b6d4;
-            animation: fill-success 0.4s ease-in-out 0.4s forwards, scale-success 0.3s ease-in-out 0.9s both;
-        }
-
-        .success-checkmark.show {
-            display: block;
-        }
-
-        @keyframes fill-success {
-            100% {
-                box-shadow: inset 0 0 0 60px #06b6d4;
-            }
-        }
-
-        @keyframes scale-success {
-            0%, 100% {
-                transform: none;
-            }
-            50% {
-                transform: scale3d(1.1, 1.1, 1);
-            }
-        }
-
-        .success-checkmark-circle {
-            stroke-dasharray: 166;
-            stroke-dashoffset: 166;
-            stroke-width: 4;
-            stroke-miterlimit: 10;
-            stroke: #06b6d4;
-            fill: none;
-            animation: stroke-circle 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-        }
-
-        @keyframes stroke-circle {
-            100% {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        .success-checkmark-check {
-            transform-origin: 50% 50%;
-            stroke-dasharray: 48;
-            stroke-dashoffset: 48;
-            animation: stroke-check 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
-        }
-
-        @keyframes stroke-check {
-            100% {
-                stroke-dashoffset: 0;
-            }
-        }
-
-        .close-modal-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .close-modal-btn:hover {
-            background: rgba(6, 182, 212, 0.2);
-            border-color: #06b6d4;
-            transform: rotate(90deg);
         }
     </style>
 </head>
@@ -673,55 +725,6 @@
     <!-- Preloader -->
     <div id="preloader">
         <div class="loader"></div>
-    </div>
-
-    <!-- Download Notification -->
-    <div id="downloadNotification" class="download-notification">
-        <i class="fas fa-download"></i>
-        <span id="notificationText">İndirme başlatılıyor...</span>
-    </div>
-
-    <!-- VRChat-themed Download Modal -->
-    <div id="downloadModal" class="download-modal-overlay">
-        <div class="download-modal">
-            <button class="close-modal-btn" onclick="closeDownloadModal(event)">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <div class="particles" id="particleContainer"></div>
-
-            <div id="downloadingState">
-                <div class="vr-headset-icon">
-                    <i class="fas fa-vr-cardboard"></i>
-                </div>
-
-                <div class="download-filename" id="modalFilename">Avatar Switcher Pro</div>
-                <div class="download-status" id="downloadStatus">Preparing download...</div>
-
-                <div class="download-percentage" id="downloadPercentage">0%</div>
-
-                <div class="download-progress-container">
-                    <div class="download-progress-bar">
-                        <div class="download-progress-fill" id="progressFill"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="successState" style="display: none;">
-                <svg class="success-checkmark show" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                    <circle class="success-checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                    <path class="success-checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                </svg>
-
-                <div class="download-filename">Download Complete!</div>
-                <p style="color: #94a3b8; font-size: 16px; margin: 20px 0;">
-                    Your mod is ready to use
-                </p>
-                <button onclick="closeDownloadModal(event)" class="btn btn-primary" style="margin-top: 20px;">
-                    <i class="fas fa-check"></i> Close
-                </button>
-            </div>
-        </div>
     </div>
 
     <!-- Navigation -->
@@ -732,11 +735,11 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#mods" class="nav-link"><i class="fas fa-puzzle-piece"></i> Plugins</a></li>
+                <li><a href="#mods" class="nav-link"><i class="fas fa-rocket"></i> Mods</a></li>
                 <li><a href="#gallery" class="nav-link"><i class="fas fa-images"></i> Gallery</a></li>
                 <li>
-                    <a href="https://store.steampowered.com/app/661130/ChilloutVR/" target="_blank" class="btn btn-primary" style="margin-left: 12px;">
-                        <i class="fas fa-download"></i> Download CVR
+                    <a href="https://discord.gg/chilloutvr" class="btn btn-primary" style="margin-left: 12px;">
+                        <i class="fab fa-discord"></i> Join Community
                     </a>
                 </li>
             </ul>
@@ -746,76 +749,67 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
                 <!-- Left Content -->
-                <div style="max-width: 600px;">
+                <div>
                     <h1>
-                        Unlock the Power of <span class="gradient-text">ChilloutVR Mod</span>
+                        Experience <span class="gradient-text">Next-Level</span> VR
                     </h1>
-                    <p style="font-size: 18px; color: #94a3b8; margin-bottom: 30px;">
-                        Transform your VR experience with premium mods. Join <strong class="animated-stat">120,000+ users</strong> worldwide in our growing community.
+                    <p class="hero-subtitle">
+                        Unlock premium mods that transform your VR experience. Join <strong>120,000+</strong> users worldwide discovering limitless possibilities.
                     </p>
-                    <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 30px;">
+                    
+                    <div class="button-group">
                         <a href="#mods" class="btn btn-primary">
-                            <i class="fas fa-rocket"></i> Get Started
+                            <i class="fas fa-sparkles"></i> Explore Mods
                         </a>
-                        <a href="https://discord.gg/chilloutvr" class="btn" style="background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.15); color: white;">
-                            <i class="fab fa-discord"></i> Join Community
+                        <a href="https://discord.gg/chilloutvr" class="btn btn-secondary">
+                            <i class="fab fa-discord"></i> Community
                         </a>
                     </div>
-                    
-                    <!-- Stats Pills -->
-                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 50px; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); backdrop-filter: blur(10px);">
-                            <i class="fas fa-puzzle-piece" style="color: #06b6d4; font-size: 16px;"></i>
-                            <span style="color: #06b6d4; font-size: 15px; font-weight: 700;" id="modCount">8</span>
-                            <span style="color: #94a3b8; font-size: 15px; font-weight: 600;">Premium Mods</span>
+
+                    <div class="stats-container">
+                        <div class="stat-pill">
+                            <i class="fas fa-puzzle-piece stat-icon"></i>
+                            <div>
+                                <span class="stat-number" id="modCount">8</span>
+                                <span class="stat-text">Premium Mods</span>
+                            </div>
                         </div>
                         
-                        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 50px; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); backdrop-filter: blur(10px);">
-                            <i class="fas fa-users" style="color: #06b6d4; font-size: 16px;"></i>
-                            <span style="color: #94a3b8; font-size: 15px; font-weight: 600;">Active Community</span>
+                        <div class="stat-pill">
+                            <i class="fas fa-users stat-icon"></i>
+                            <span class="stat-text">Thriving Community</span>
+                        </div>
+
+                        <div class="stat-pill">
+                            <i class="fas fa-star stat-icon"></i>
+                            <span class="stat-text">5-Star Rated</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right Card -->
-                <div style="position: relative;">
-                    <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 24px; padding: 40px; backdrop-filter: blur(20px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);">
-                        <!-- Live Badge -->
-                        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 50px; background: rgba(6, 182, 212, 0.15); border: 1px solid rgba(6, 182, 212, 0.4); margin-bottom: 30px;">
-                            <div style="width: 8px; height: 8px; background: #06b6d4; border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite;"></div>
-                            <span style="color: #06b6d4; font-size: 13px; font-weight: 700; letter-spacing: 0.5px;">LIVE NOW</span>
+                <div class="hero-card">
+                    <div class="hero-card-inner">
+                        <div class="live-badge">
+                            <div class="live-dot"></div>
+                            <span class="live-text">LIVE & ACTIVE</span>
                         </div>
 
-                        <!-- CVR Logo -->
-                        <div style="text-align: center; margin-bottom: 30px;">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Orbitron, sans-serif' font-size='60' font-weight='900' fill='white' letter-spacing='-3'%3ECVR%3C/text%3E%3C/svg%3E" alt="CVR Logo" style="width: 100%; max-width: 280px; height: auto; filter: drop-shadow(0 4px 20px rgba(6, 182, 212, 0.3));">
-                        </div>
+                        <div class="cvr-logo">CVR</div>
 
-                        <!-- Stats -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 24px; background: rgba(0, 0, 0, 0.4); border-radius: 16px; border: 1px solid rgba(6, 182, 212, 0.2);">
-                            <div style="text-align: center;">
-                                <div style="font-size: 32px; font-weight: 900; background: linear-gradient(135deg, #06b6d4, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px;">
-                                    120K+
-                                </div>
-                                <div style="color: #94a3b8; font-size: 14px; font-weight: 600;">
-                                    Users
-                                </div>
+                        <div class="hero-stats">
+                            <div class="hero-stat">
+                                <div class="hero-stat-number">120K+</div>
+                                <div class="hero-stat-label">Active Users</div>
                             </div>
                             
-                            <div style="text-align: center;">
-                                <div style="font-size: 32px; font-weight: 900; background: linear-gradient(135deg, #06b6d4, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px;">
-                                    <span id="heroModCount">8</span>
-                                </div>
-                                <div style="color: #94a3b8; font-size: 14px; font-weight: 600;">
-                                    Mods
-                                </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-number" id="heroModCount">8</div>
+                                <div class="hero-stat-label">Premium Mods</div>
                             </div>
                         </div>
-
-                        <!-- Decorative Element -->
-                        <div style="position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, #06b6d4, #3b82f6); border-radius: 12px; opacity: 0.6;"></div>
                     </div>
                 </div>
             </div>
@@ -823,23 +817,18 @@
     </section>
 
     <!-- Mods Section -->
-    <section id="mods" class="section" style="background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 100%);">
+    <section id="mods" class="section" style="background: linear-gradient(180deg, rgba(10,10,18,0) 0%, rgba(10,15,35,0.3) 100%);">
         <div class="container">
-            <!-- Curated Collection Badge -->
             <div style="text-align: center; margin-bottom: 30px;">
-                <div style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 24px; border-radius: 50px; background: linear-gradient(135deg, rgba(6,182,212,0.15), rgba(59,130,246,0.1)); border: 1px solid rgba(6,182,212,0.3); backdrop-filter: blur(10px);">
-                    <div class="capsule-icon" style="width: 32px; height: 32px; background: linear-gradient(135deg, #06b6d4, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-capsules" style="color: white; font-size: 14px;"></i>
-                    </div>
-                    <span style="color: #06b6d4; font-size: 14px; font-weight: 700; letter-spacing: 0.5px;">● CURATED COLLECTION</span>
+                <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 50px; background: linear-gradient(135deg, rgba(0,217,255,0.15), rgba(124,58,237,0.1)); border: 1px solid rgba(0,217,255,0.2);">
+                    <i class="fas fa-crown" style="color: var(--primary); font-size: 14px;"></i>
+                    <span style="color: var(--primary); font-size: 13px; font-weight: 700; letter-spacing: 0.5px;">CURATED SELECTION</span>
                 </div>
             </div>
 
-            <h2 style="font-size: 48px; font-weight: 900; text-align: center; margin-bottom: 16px; letter-spacing: -2px;">
-                Discover <span style="background: linear-gradient(135deg, #06b6d4, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Premium Mods</span>
-            </h2>
-            <p style="text-align: center; color: rgba(148, 163, 184, 0.9); font-size: 18px; max-width: 700px; margin: 0 auto 50px; line-height: 1.6;">
-                Hand-picked enhancements that transform your VR experience. Each mod is tested, verified, and loved by our community.
+            <h2 class="section-title">Premium Mods Collection</h2>
+            <p class="section-subtitle">
+                Carefully selected enhancements crafted for maximum performance and immersion. Every mod is tested, optimized, and verified by our expert team.
             </p>
 
             <div class="card-grid" id="modsGrid">
@@ -851,18 +840,17 @@
     <!-- Gallery Section -->
     <section id="gallery" class="section">
         <div class="container">
-            <div style="margin-bottom: 50px; text-align: center;">
-                <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 50px; background: linear-gradient(135deg, rgba(6,182,212,0.15), rgba(59,130,246,0.1)); border: 1px solid rgba(6,182,212,0.3); margin-bottom: 20px; backdrop-filter: blur(10px);">
-                    <i class="fas fa-images" style="color: #06b6d4; font-size: 14px;"></i>
-                    <span style="color: #06b6d4; font-size: 13px; font-weight: 700; letter-spacing: 0.5px;">COMMUNITY SHOWCASE</span>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 50px; background: linear-gradient(135deg, rgba(0,217,255,0.15), rgba(124,58,237,0.1)); border: 1px solid rgba(0,217,255,0.2);">
+                    <i class="fas fa-sparkles" style="color: var(--primary); font-size: 14px;"></i>
+                    <span style="color: var(--primary); font-size: 13px; font-weight: 700; letter-spacing: 0.5px;">COMMUNITY HIGHLIGHTS</span>
                 </div>
-                <h2 style="font-size: 42px; font-weight: 900; margin-bottom: 16px; letter-spacing: -1.5px;">
-                    Community <span style="background: linear-gradient(135deg, #06b6d4, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Gallery</span>
-                </h2>
-                <p style="color: rgba(148, 163, 184, 0.9); font-size: 17px; max-width: 600px; margin: 0 auto;">
-                    Stunning moments and experiences from our vibrant ChilloutVR community
-                </p>
             </div>
+
+            <h2 class="section-title">Showcase</h2>
+            <p class="section-subtitle">
+                Witness the incredible moments and stunning creations from our vibrant ChilloutVR community.
+            </p>
 
             <div class="card-grid" id="galleryGrid">
                 <!-- Gallery items will be loaded by JavaScript -->
@@ -870,14 +858,57 @@
         </div>
     </section>
 
+    <!-- Download Modal -->
+    <div id="downloadModal" style="position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 10000; display: none; align-items: center; justify-content: center;">
+        <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(20, 30, 70, 0.95)); border: 1px solid rgba(0, 217, 255, 0.2); border-radius: 28px; padding: 50px; max-width: 500px; width: 90%; text-align: center; position: relative; box-shadow: 0 30px 100px rgba(0, 217, 255, 0.2);">
+            <button onclick="closeDownloadModal()" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; font-size: 20px;">
+                ✕
+            </button>
+
+            <div id="downloadingState">
+                <div style="width: 100px; height: 100px; margin: 0 auto 30px; background: linear-gradient(135deg, #00d9ff, #7c3aed); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: float 3s ease-in-out infinite; box-shadow: 0 10px 40px rgba(0, 217, 255, 0.4);">
+                    <i class="fas fa-vr-cardboard" style="font-size: 50px; color: white;"></i>
+                </div>
+
+                <div id="modalFilename" style="font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: white; margin-bottom: 10px;">Avatar Switcher Pro</div>
+                <div id="downloadStatus" style="color: #a0aec0; font-size: 16px; font-weight: 600; margin-bottom: 30px;">Preparing download...</div>
+
+                <div id="downloadPercentage" style="font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 900; background: linear-gradient(135deg, #00d9ff, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;">0%</div>
+
+                <div style="width: 100%; height: 8px; background: rgba(0, 217, 255, 0.2); border-radius: 10px; overflow: hidden; margin-bottom: 30px;">
+                    <div id="progressFill" style="height: 100%; background: linear-gradient(90deg, #00d9ff, #7c3aed); width: 0%; transition: width 0.3s ease;"></div>
+                </div>
+            </div>
+
+            <div id="successState" style="display: none;">
+                <div style="font-size: 60px; color: #00d9ff; margin-bottom: 20px;">
+                    ✓
+                </div>
+                <div style="font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: white; margin-bottom: 10px;">Download Complete!</div>
+                <p style="color: #a0aec0; font-size: 16px; margin: 20px 0; line-height: 1.6;">
+                    Your mod is ready to use. Extract and follow the installation guide.
+                </p>
+                <button onclick="closeDownloadModal()" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
+                    <i class="fas fa-check"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p style="color: #94a3b8; margin-bottom: 20px;">© 2025 CVR Mods. All rights reserved.</p>
-            <div style="display: flex; justify-content: center; gap: 16px;">
-                <a href="#" style="color: #06b6d4; font-size: 24px;"><i class="fab fa-discord"></i></a>
-                <a href="https://x.com/ChilloutVR" style="color: #06b6d4; font-size: 24px;"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" style="color: #06b6d4; font-size: 24px;"><i class="fab fa-instagram"></i></a>
+            <p class="footer-content">© 2025 ChilloutVR Mods. Crafted with precision for the ultimate VR experience.</p>
+            <div class="footer-socials">
+                <a href="https://discord.gg/chilloutvr" class="social-link" title="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://x.com/ChilloutVR" class="social-link" title="Twitter">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="#" class="social-link" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
             </div>
         </div>
     </footer>
@@ -889,7 +920,7 @@
                 const preloader = document.getElementById('preloader');
                 preloader.style.opacity = '0';
                 setTimeout(() => preloader.style.display = 'none', 500);
-            }, 500);
+            }, 800);
         });
 
         // Navbar scroll effect
@@ -902,22 +933,7 @@
             }
         });
 
-        // Create particles for download modal
-        function createParticles() {
-            const particleContainer = document.getElementById('particleContainer');
-            particleContainer.innerHTML = '';
-            
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 3 + 's';
-                particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                particleContainer.appendChild(particle);
-            }
-        }
-
-        // VRChat-themed Download Modal
+        // Download Modal Functions
         function showDownloadModal(modName, downloadUrl) {
             const modal = document.getElementById('downloadModal');
             const filename = document.getElementById('modalFilename');
@@ -927,19 +943,15 @@
             const downloadingState = document.getElementById('downloadingState');
             const successState = document.getElementById('successState');
 
-            // Reset states
             downloadingState.style.display = 'block';
             successState.style.display = 'none';
             percentage.textContent = '0%';
             progressFill.style.width = '0%';
             
             filename.textContent = modName;
-            status.textContent = 'Initializing download...';
-            
-            modal.classList.add('active');
-            createParticles();
+            status.textContent = 'Preparing download...';
+            modal.style.display = 'flex';
 
-            // Simulate download progress
             let progress = 0;
             const statuses = [
                 'Connecting to server...',
@@ -964,9 +976,8 @@
                 if (progress >= 100) {
                     clearInterval(interval);
                     
-                    // Start actual download immediately
+                    // Trigger actual download
                     if (downloadUrl && downloadUrl !== '#') {
-                        // Create invisible download link
                         const downloadLink = document.createElement('a');
                         downloadLink.href = downloadUrl;
                         downloadLink.download = '';
@@ -976,7 +987,6 @@
                         document.body.removeChild(downloadLink);
                     }
                     
-                    // Show success state
                     setTimeout(() => {
                         downloadingState.style.display = 'none';
                         successState.style.display = 'block';
@@ -985,113 +995,73 @@
             }, 200);
         }
 
-        function closeDownloadModal(event) {
-            if (event) {
-                event.stopPropagation();
-            }
+        function closeDownloadModal() {
             const modal = document.getElementById('downloadModal');
-            modal.classList.remove('active');
+            modal.style.display = 'none';
         }
 
-        // Download notification function (kept for compatibility)
-        function showDownloadNotification(modName) {
-            const notification = document.getElementById('downloadNotification');
-            const notificationText = document.getElementById('notificationText');
-            
-            notificationText.textContent = `${modName} indiriliyor...`;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        // Updated download handler
-        function handleDownload(url, modName) {
-            if (url && url !== '#') {
-                showDownloadModal(modName, url);
-            } else {
-                alert('Bu mod için indirme linki henüz eklenmedi. Lütfen daha sonra tekrar deneyin.');
-            }
-        }
-
-        // Close modal on escape key
+        // Close modal on escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeDownloadModal();
             }
         });
 
-        // Close modal on overlay click
-        document.getElementById('downloadModal').addEventListener('click', (e) => {
-            if (e.target.id === 'downloadModal') {
-                closeDownloadModal();
-            }
-        });
-
-        // ChilloutVR mods data - UPDATED WITH GITHUB RELEASE LINKS
+        // ChilloutVR mods data
         const mods = [
             { 
                 name: 'Avatar Switcher Pro', 
-                description: 'Quickly switch between avatars with favorites, search, and seamless transition animations for instant avatar changes', 
+                description: 'Lightning-fast avatar switching with favorites, advanced search, and seamless transitions for instant customization.', 
                 image: 'images/image1.jpg',
-                tags: ['Plugin'],
                 downloads: '24K',
                 downloadUrl: 'https://github.com/faraza-1/chillvrmod.com/releases/download/v1.0.0/ChillOutVR.exe'
             },
             { 
                 name: 'Interaction Plus', 
-                description: 'Enhanced interaction system with better pickup physics, haptic feedback, and custom gesture recognition', 
+                description: 'Enhanced interaction system featuring superior pickup physics, haptic feedback, and intelligent gesture recognition.', 
                 image: 'images/image2.jpg',
-                tags: ['Plugin'],
                 downloads: '21K',
                 downloadUrl: 'https://github.com/faraza-1/chillvrmod.com/releases/download/v1.0.0/ChillOutVR.exe'
             },
             { 
                 name: 'Camera Tools Pro', 
-                description: 'Professional camera tools with multiple angles, smooth transitions, photo modes, and video recording capabilities', 
+                description: 'Professional-grade camera suite with multi-angle support, smooth transitions, advanced photo modes, and 4K recording.', 
                 image: 'images/image3.jpg',
-                tags: ['Plugin'],
                 downloads: '27K',
                 downloadUrl: 'https://github.com/faraza-1/chillvrmod.com/releases/download/v1.0.0/ChillOutVR.exe'
             },
             { 
                 name: 'World Creator Kit', 
-                description: 'Complete world building toolkit with terrain editor, asset library, lighting tools, and instant world publishing', 
+                description: 'Complete world-building platform with terrain sculpting, unlimited assets, professional lighting, and instant publishing.', 
                 image: 'images/image4.jpg',
-                tags: ['Visual'],
                 downloads: '18K',
                 downloadUrl: 'https://github.com/faraza-1/chillvrmod.com/releases/download/v1.0.0/ChillOutVR.exe'
             },
             { 
-                name: 'Voice Enhancer', 
-                description: 'Crystal clear voice communication with noise cancellation, voice effects, and spatial audio enhancement', 
+                name: 'Voice Enhancer Ultra', 
+                description: 'Crystal-clear communication with advanced noise cancellation, voice effects, spatial audio, and echo reduction.', 
                 image: 'images/image5.jpg',
-                tags: ['Plugin'],
                 downloads: '32K',
                 downloadUrl: 'https://github.com/faraza-1/chillvrmod.com/releases/download/v1.0.0/ChillOutVR.exe'
             },
             { 
                 name: 'Gesture System Advanced', 
-                description: 'Advanced gesture recognition with custom animations, hand tracking improvements, and expressive emotes library', 
+                description: 'Advanced gesture recognition with custom animation library, improved hand tracking, and expressive emotes suite.', 
                 image: 'images/image6.jpg',
-                tags: ['Plugin'],
                 downloads: '23K',
                 downloadUrl: 'https://github.com/faraza-1/chillvrmod.com/releases/download/v1.0.0/ChillOutVR.exe'
             },
             { 
-                name: 'Performance Monitor', 
-                description: 'Real-time performance monitoring with FPS counter, latency display, GPU/CPU usage, and optimization suggestions', 
+                name: 'Performance Monitor Elite', 
+                description: 'Real-time performance analytics with FPS counter, latency monitoring, GPU/CPU tracking, and optimization tips.', 
                 image: 'images/image7.jpg',
-                tags: ['Plugin'],
                 downloads: '25K',
                 downloadUrl: 'https://github.com/faraza-1/chillvrmod.com/releases/download/v1.0.0/ChillOutVR.exe'
             },
             { 
                 name: 'Safety System Plus', 
-                description: 'Enhanced safety features with advanced blocking, content filtering, personal space protection, and privacy controls', 
+                description: 'Enterprise-grade safety with advanced blocking, content filtering, personal space protection, and privacy controls.', 
                 image: 'images/image8.jpg',
-                tags: ['Plugin'],
                 downloads: '30K',
                 downloadUrl: 'https://github.com/faraza-1/chillvrmod.com/releases/download/v1.0.0/ChillOutVR.exe'
             }
@@ -1099,11 +1069,11 @@
 
         // Render mods
         const modsGrid = document.getElementById('modsGrid');
-        mods.forEach(mod => {
+        mods.forEach((mod, index) => {
             const card = document.createElement('div');
             card.className = 'card';
-            
-            const tagClass = mod.tags[0].toLowerCase();
+            card.style.animation = `slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) ${0.1 * (index + 1)}s forwards`;
+            card.style.opacity = '0';
             
             card.innerHTML = `
                 <img src="${mod.image}" alt="${mod.name}" class="card-image" loading="lazy">
@@ -1111,12 +1081,12 @@
                     <h3 class="card-title">${mod.name}</h3>
                     <p class="card-description">${mod.description}</p>
                     
-                    <div style="display: flex; align-items: center; gap: 8px; margin: 16px 0; padding-top: 12px; border-top: 1px solid rgba(99, 102, 241, 0.2);">
-                        <i class="fas fa-download" style="color: #06b6d4; font-size: 14px;"></i>
-                        <span style="color: #94a3b8; font-size: 13px;">${mod.downloads}</span>
+                    <div class="card-footer">
+                        <i class="fas fa-download"></i>
+                        <span>${mod.downloads} downloads</span>
                     </div>
                     
-                    <button onclick="handleDownload('${mod.downloadUrl}', '${mod.name}')" class="btn btn-primary" style="width: 100%;">
+                    <button class="btn btn-primary" onclick="showDownloadModal('${mod.name}', '${mod.downloadUrl}')">
                         <i class="fas fa-download"></i> Download Now
                     </button>
                 </div>
@@ -1131,28 +1101,30 @@
         // Gallery data
         const galleryItems = [
             { 
-                title: 'Virtual Reality', 
-                description: 'Next-Level Immersion',
+                title: 'Immersive Worlds', 
+                description: 'Explore breathtaking virtual environments',
                 image: 'images/gallery1.jpg'
             },
             { 
                 title: 'Social Hub', 
-                description: 'Connect with Friends',
+                description: 'Connect with creators worldwide',
                 image: 'images/gallery2.jpg'
             },
             { 
-                title: 'Immersive Worlds', 
-                description: 'Endless Exploration',
+                title: 'Virtual Reality', 
+                description: 'The future of digital interaction',
                 image: 'images/gallery3.jpg'
             }
         ];
 
         // Render gallery
         const galleryGrid = document.getElementById('galleryGrid');
-        galleryItems.forEach(item => {
+        galleryItems.forEach((item, index) => {
             const card = document.createElement('div');
             card.className = 'card';
             card.style.cursor = 'pointer';
+            card.style.animation = `slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) ${0.1 * (index + 1)}s forwards`;
+            card.style.opacity = '0';
             card.innerHTML = `
                 <img src="${item.image}" alt="${item.title}" class="card-image" loading="lazy">
                 <div class="card-content">
@@ -1160,9 +1132,6 @@
                     <p class="card-description">${item.description}</p>
                 </div>
             `;
-            card.addEventListener('click', () => {
-                alert(`${item.title}: ${item.description}`);
-            });
             galleryGrid.appendChild(card);
         });
 
@@ -1198,6 +1167,5 @@
             });
         });
     </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"519f502f36bb4c9192b9bacc9116ac5f","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
