@@ -698,6 +698,89 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Mouse Trail Effect */
+        .mouse-trail {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.8), rgba(124, 58, 237, 0.4));
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.6), 0 0 40px rgba(124, 58, 237, 0.3);
+            animation: trailFade 0.8s ease-out forwards;
+        }
+
+        @keyframes trailFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        /* Smooth Cursor */
+        body {
+            cursor: none;
+        }
+
+        .cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            left: 0;
+            top: 0;
+            will-change: transform;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, height 0.3s ease;
+            opacity: 1;
+        }
+
+        .cursor::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid var(--secondary);
+            border-radius: 50%;
+            animation: cursorGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes cursorGlow {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .cursor.active {
+            width: 28px;
+            height: 28px;
+            border-color: var(--secondary);
+            box-shadow: 0 0 15px var(--primary), inset 0 0 10px rgba(0, 217, 255, 0.2);
+        }
+
+        /* Normal cursor for download button */
+        .btn-primary {
+            cursor: pointer;
+        }
+
+        /* Modal normal cursor */
+        #downloadModal {
+            cursor: auto !important;
+        }
+
+        #downloadModal * {
+            cursor: auto !important;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 48px;
@@ -722,6 +805,9 @@
     </style>
 </head>
 <body>
+    <!-- Smooth Cursor -->
+    <div class="cursor"></div>
+
     <!-- Preloader -->
     <div id="preloader">
         <div class="loader"></div>
@@ -914,6 +1000,92 @@
     </footer>
 
     <script>
+        // Smooth Cursor & Trail Effect
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
+        // Use requestAnimationFrame for smooth cursor movement
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            
+            cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Create trail particles
+            if (Math.random() > 0.65) {
+                createTrailParticle(mouseX, mouseY);
+            }
+
+            cursor.style.opacity = '1';
+        });
+
+        function createTrailParticle(x, y) {
+            const trail = document.createElement('div');
+            trail.className = 'mouse-trail';
+            trail.style.left = (x + (Math.random() - 0.5) * 15) + 'px';
+            trail.style.top = (y + (Math.random() - 0.5) * 15) + 'px';
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                trail.remove();
+            }, 800);
+        }
+
+        // Cursor visibility when entering/leaving window
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
+        });
+
+        // Active state for non-download interactive elements
+        document.addEventListener('mouseenter', (e) => {
+            const isDownloadBtn = e.target.classList.contains('btn-primary') || 
+                                 e.target.closest('.btn-primary');
+            
+            if (!isDownloadBtn && (
+                e.target.tagName === 'A' || 
+                e.target.tagName === 'BUTTON' || 
+                e.target.classList.contains('btn') ||
+                e.target.classList.contains('card') ||
+                e.target.classList.contains('social-link'))) {
+                cursor.classList.add('active');
+            }
+        }, true);
+
+        document.addEventListener('mouseleave', (e) => {
+            cursor.classList.remove('active');
+        }, true);
+
+        // Hide custom cursor and show normal cursor on download button
+        document.addEventListener('mouseenter', (e) => {
+            const btn = e.target.closest('.btn-primary');
+            if (btn) {
+                cursor.style.opacity = '0';
+                btn.style.cursor = 'pointer';
+            }
+        }, true);
+
+        document.addEventListener('mouseleave', (e) => {
+            const btn = e.target.closest('.btn-primary');
+            if (btn) {
+                cursor.style.opacity = '1';
+                btn.style.cursor = 'none';
+            }
+        }, true);
+
         // Hide preloader
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -951,6 +1123,11 @@
             filename.textContent = modName;
             status.textContent = 'Preparing download...';
             modal.style.display = 'flex';
+
+            // Hide custom cursor and show normal mouse when modal opens
+            cursor.style.opacity = '0';
+            document.body.style.cursor = 'auto';
+            modal.style.cursor = 'auto';
 
             let progress = 0;
             const statuses = [
@@ -998,6 +1175,10 @@
         function closeDownloadModal() {
             const modal = document.getElementById('downloadModal');
             modal.style.display = 'none';
+            
+            // Restore custom cursor when modal closes
+            cursor.style.opacity = '1';
+            document.body.style.cursor = 'none';
         }
 
         // Close modal on escape
